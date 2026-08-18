@@ -1,0 +1,51 @@
+<div nz-flex nzJustify="center" nzAlign="center" [nzGap]="20" [nzVertical]="true">
+    <div nz-row>
+        <span>Cambio de Divisas</span>
+    </div>
+    <div nz-row>
+        <span>Monto a cambiar (USD):</span>
+    </div>
+    <div nz-row [nzGutter]="16">
+        <div nz-col nzSpan="12">
+            <nz-input-number nz-input type="number" [(ngModel)]="monedaEUS" (ngModelChange)="conversionNuevaMoneda()"
+                nzMin="0" />
+        </div>
+        <div nz-col nzSpan="12">
+            <nz-select style="width: 200px" [(ngModel)]="moneda" (ngModelChange)="conversionNuevaMoneda()">
+                <nz-option nzValue="PEN" nzLabel="Soles Peruano (PEN)" />
+                <nz-option nzValue="EUR" nzLabel="Euros (EUR)" />
+                <nz-option nzValue="MXN" nzLabel="Pesos Mexicanos" />
+            </nz-select>
+        </div>
+    </div>
+    <div nz-row>
+        <span>La moneda elegida es: {{moneda}}</span>
+    </div>
+    <br>
+    <div nz-row>
+        <span>Moneda destino:</span>
+    </div>
+
+    <div nz-row>
+        <span>{{monedaNEW}}</span>
+    </div>
+
+    <div nz-row style="margin-top: 20px;">
+        <button nz-button nzType="primary" nzDanger nz-popconfirm
+            nzPopconfirmTitle="¿Estás seguro de que deseas limpiar la conversión?" nzPopconfirmPlacement="top"
+            (nzOnConfirm)="eliminarConversion()">
+            Eliminar Conversión
+        </button>
+    </div>
+    <!-- <span [(ngModel)]="monedaNEW" (ngModelChange)="conversionNuevaMoneda($event)">{{monedaNEW}}</span> -->
+    <!-- <input placeholder="Basic usage" type="number" disabled [(ngModel)]="monedaNEW"> -->
+    <!-- (ngModelChange)="conversionNuevaMoneda($event)" -->
+
+    <div nz-row>
+        <input type="number" disabled [(ngModel)]="monedaNEW">
+    </div>
+
+    <div nz-row>
+        <button nz-button nzType="primary" (click)="alerta()"> PROCESAR OPERACION </button>
+    </div>
+</div>

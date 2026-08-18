@@ -1,0 +1,61 @@
+<div style="width: 30%; padding: 20px;">
+
+    <span>Evento para ingresar informacion al componente</span>
+    <input nz-input placeholder="Basic usage" [ngModel]="nombre" />
+
+    <span>Evento para extraer informacion del componente(Mayuscula)</span>
+    <input nz-input placeholder="Basic usage" [ngModel]="nombre" (ngModelChange)="funcionSalidaMayuscula($event)" />
+
+    <span>doble enlace</span>
+    <input nz-input placeholder="Basic usage" [(ngModel)]="nombre" />
+    <button nz-button nzType="primary" (click)="cambiarNombre()"> cambiar nombre a 'Alberto' </button>
+
+
+
+    <br>
+    <br>
+
+    <br>
+    <br>
+
+    <span>Moneda</span><br>
+    <nz-select style="width: 200px;" [(ngModel)]="moneda" (ngModelChange)="monedaPais()">
+        <nz-option nzValue="PEN" nzLabel="Soles" />
+        <nz-option nzValue="EUR" nzLabel="Euros" />
+        <nz-option nzValue="USD" nzLabel="Dolares" />
+        <nz-option nzValue="VES" nzLabel="Bolívar Venezolano" />
+    </nz-select>
+
+    {{moneda}}
+
+    <input nz-input type="number" [(ngModel)]="monedaAntigua" (ngModelChange)="conversionNuevaMoneda($event)" />
+    <Span>La nueva moneda: {{ monedaNueva }}</Span>
+    <input nz-input type="number" placeholder="Basic usage" [(ngModel)]="monedaNueva" />
+    <br>
+    <br>
+
+    <ul>
+        <li>
+            Probar el [] y () y [()] en DatePicker
+        </li>
+        <li>
+            Probar el [] y () y [()] en el colorPicker
+        </li>
+        <li>
+            Probar el [] y () y [()] en Radio (parecido al select)
+        </li>
+        <li>
+            Probar el [] y () y [()] en DateRangePicker
+        </li>
+        <li>
+            Probar el [] y () y [()] en CheckBox
+        </li>
+
+    </ul>
+
+    <button nz-button nzType="primary" (click)="registrar()">Imprimir valores</button>
+
+
+
+
+</div>

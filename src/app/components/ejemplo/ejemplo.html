@@ -1,0 +1,74 @@
+<nav style="display: flex; gap: 10px; padding: 12px; background: #f0f2f5; border-radius: 8px; margin-bottom: 16px;">
+    <a routerLink="/ejemplo" routerLinkActive="ant-btn-primary" nz-button nzType="default">Ejemplo</a>
+    <a routerLink="/ficha" routerLinkActive="ant-btn-primary" nz-button nzType="default">Ficha</a>
+    <a routerLink="/perfil" routerLinkActive="ant-btn-primary" nz-button nzType="default">Perfil</a>
+</nav>
+
+<div style="border: 1px solid #d9d9d9; border-radius: 8px; padding: 16px; margin-bottom: 24px; background: #fafafa;">
+    <h3>Vista de Rutas (Router Outlet):</h3>
+</div>
+
+<app-ficha nombre="Enrique" [edad]="20" colorFondo="#f7b2b2ff"></app-ficha>
+-----------------------------------------
+Prueba del ejercicio Usuario
+@for(y of usuarios; track $index){
+
+@if(comida){
+
+<app-perfil [nombreUsuario]="y.nombreUsuario" [rolUsuario]="y.rolUsuario"
+    [estadoUsuario]="y.estadoUsuario"></app-perfil>
+
+<nz-rate [ngModel]="0" nzAllowHalf [nzCharacter]="characterIcon" />
+<ng-template #characterIcon><nz-icon nzType="heart" /></ng-template>
+
+}
+}
+<button nz-button nzType="primary">Primary Button</button>
+-----------------------------------------
+<app-ficha nombre="Donadoni" (onEliminar)="eliminar($event)" nombreBotonSaludar="Registrar">
+    <ng-template #contenidoFicha>
+        <span>Mascota:</span>
+        <li>
+            <ul>Gato</ul>
+            <ul>conejo</ul>
+        </li>
+    </ng-template>
+
+    <ng-template #botonesAccionFooter>
+        <button>Boton1</button>
+        <button>Boton2</button>
+        <button>Boton2</button>
+    </ng-template>
+
+    <ng-template #titulo>
+        <br>
+
+        <span>Titulo Perzonalizado</span>
+
+        <br>
+    </ng-template>
+</app-ficha>
+
+<app-ficha nombre="Jose" [(ejemplo)]="variableDoble"></app-ficha>
+-----------------------------------------
+@for(x of integrantes; track $index){
+<app-ficha [nombre]="x.nombre" [descripcion]="x.descripcion" [edad]="x.edad" [mostrarEdad]="x.mostrarEdad"
+    (onEliminar)="eliminar($event)">
+</app-ficha>
+}
+-------------------------------------------
+@if(comida){
+<h1>Hay comida</h1>
+}@else{
+<h1>No hay comida</h1>
+}
+<p>Este es un parrafo</p>
+<button (click)="saludo()">Haz click</button>
+
+@for(x of integrantes; track $index){
+<li>{{x.nombre}}</li>
+}
+<input [(ngModel)]="mensaje" />
+******************
+{{ mensaje }}
+******************

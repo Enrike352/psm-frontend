@@ -1,0 +1,27 @@
+<p>checked works!</p>
+
+<div style="width: 70%; padding: 40px;">
+    <label nz-checkbox [ngModel]="checked">Checkbox</label>
+    <br>
+    <br>
+    <label nz-checkbox (click)="estado()">Checkbox</label>
+    <br>
+    <br>
+    <span>Ckeck para Apagar</span>
+    <br>
+    <label nz-checkbox [ngModel]="checked" (ngModelChange)="apagar()">Checkbox</label>
+    <br>
+    <br>
+    <label nz-checkbox (click)="estado()">Checkbox</label>
+    <br>
+    <br>
+    <br>
+    <label nz-checkbox [(ngModel)]="checked">Checkbox ALL</label>
+    <br>
+    <br>
+    <br>
+    <label nz-checkbox [ngModel]="checked">Checkbox 1</label>
+    <label nz-checkbox [ngModel]="checked">Checkbox 2</label>
+    <label nz-checkbox [ngModel]="checked">Checkbox 3</label>
+
+</div>

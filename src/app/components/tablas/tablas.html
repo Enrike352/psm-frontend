@@ -1,0 +1,101 @@
+<form nz-form [formGroup]="filtroForm" class="ant-advanced-search-form">
+    <div nz-row nzGutter="[24]" nzAlign="bottom">
+
+
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12" [nzLg]="6" [nzSpan]="8">
+            <nz-form-item>
+                <nz-form-label>RUC:</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="ruc" placeholder="Ingrese un RUC"
+                        (keyup.enter)="productoKeyEnterRuc()" style="text-transform: uppercase;" />
+                </nz-form-control>
+
+            </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12" [nzLg]="6" [nzSpan]="8">
+            <nz-form-item>
+                <nz-form-label>Razón social:</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="razonSocialNombre" placeholder="Ingrese el nombre de la empresa"
+                        (keyup.enter)="productoKeyEnter()" style="text-transform: uppercase;" />
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12" [nzLg]="6" [nzSpan]="8">
+            <nz-form-item>
+                <nz-form-label>Plan:</nz-form-label>
+                <nz-form-control>
+                    <nz-select class="select" formControlName="arrIdPlan" nzMode="multiple" nzShowSearch nzAllowClear
+                        nzPlaceHolder="Seleccione las planes">
+                        @for (plan of arrPlan; track plan) {
+                        <nz-option [nzLabel]="plan.nombre" [nzValue]="plan.idPlan"></nz-option>
+                        }
+                    </nz-select>
+
+                </nz-form-control>
+            </nz-form-item>
+
+        </div>
+
+        <div nz-col nzFlex="auto" class="search-area">
+            <nz-form-item>
+                <div nz-row [nzGutter]="8" nzAlign="middle" [nzJustify]="'end'">
+                    <div nz-col>
+                        <button nz-button nzType="primary" (click)="obtenerEmpresaPorFiltros()">Filtrar</button>
+                    </div>
+                    <div nz-col>
+                        <button nz-button (click)="limpiarFiltrosBusqueda()">Limpiar</button>
+                    </div>
+                    <div nz-col>
+                        <a class="collapse" (click)="verMasFiltros = !verMasFiltros">
+                            {{ verMasFiltros ? 'Ver Más' : 'Ver Menos' }}
+                            <i nz-icon [nzType]="verMasFiltros ? 'down' : 'up'"></i>
+                        </a>
+                    </div>
+                </div>
+            </nz-form-item>
+        </div>
+    </div>
+</form>
+
+<nz-table #basicTable [nzData]="listOfData">
+    <thead>
+        <tr>
+            <th>Ruc Emisor</th>
+            <th>Empresa Emisor</th>
+            <th>Tipo CPE</th>
+            <th>Nro CPE</th>
+            <th>Fecha Emisión</th>
+            <th>Detalle Error</th>
+            <th>Intentos</th>
+            <th>+Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (item of basicTable.data; track $index) {
+        <tr>
+            <td nz-typography><strong>{{ item.ruc }}</strong></td>
+            <td>{{ item.empresa }}</td>
+            <td>
+                <nz-tag nzColor="blue">{{ item.tipoCpe }}</nz-tag>
+            </td>
+            <td nz-typography><strong>{{ item.nroCpe }}</strong></td>
+            <td>{{ item.fechaEmision }}</td>
+            <td><span nz-typography nzType="danger">{{ item.detalleError }}</span></td>
+            <td>{{ item.intentos }}</td>
+            <td>
+                <button nz-button nz-dropdown [nzDropdownMenu]="menu" [nzPlacement]="tipoButton">
+                    +Opciones ▼
+                </button>
+                <nz-dropdown-menu #menu="nzDropdownMenu">
+                    <ul nz-menu>
+                        <li nz-menu-item>Enviar a sunat</li>
+                        <li nz-menu-item>Marcar como enviado</li>
+                    </ul>
+                </nz-dropdown-menu>
+            </td>
+        </tr>
+        }
+    </tbody>
+</nz-table>

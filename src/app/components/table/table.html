@@ -1,0 +1,41 @@
+<!-- Este es un botón normal, feo por defecto -->
+<button>Botón Normal</button>
+
+<br><br>
+
+<nz-radio-group [(ngModel)]="size">
+    <label nz-radio-button nzValue="large">Large</label>
+    <label nz-radio-button nzValue="default">Default</label>
+    <label nz-radio-button nzValue="small">Small</label>
+    <label nz-radio-button nzValue="error" nzDisabled>Error</label>
+</nz-radio-group>
+
+<br><br>
+
+<button nz-button nzType="primary" nzSize="large" nzShape="round" disabled>
+    <nz-icon nzType="download" />
+    Download Fijo
+</button>
+
+<button nz-button nzType="primary" [nzSize]="size()" nzShape="circle">
+    <nz-icon nzType="download" />
+    Variable Dinamica
+</button>
+
+<button nz-button nzType="primary" [nzSize]="tamanoNormal" nzShape="round">
+    <nz-icon nzType="download" />
+    Variable Normal
+</button>
+
+<div>
+    @for (position of listOfPosition; track position) {
+    <button nz-button nz-dropdown [nzDropdownMenu]="menu" [nzPlacement]="position">{{ position }}</button>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu>
+            <li nz-menu-item>1st menu item length</li>
+            <li nz-menu-item>2nd menu item length</li>
+            <li nz-menu-item>3rd menu item length</li>
+        </ul>
+    </nz-dropdown-menu>
+    }
+</div>

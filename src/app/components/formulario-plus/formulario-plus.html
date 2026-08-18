@@ -1,0 +1,44 @@
+<div nzJustify="center" nz-flex nzJustify="center" nzAlign="center" [nzGap]="20" [nzVertical]="true">
+    <div nz-row>
+        <span>Input para cambiar las fechas</span>
+    </div>
+    <div nz-row>
+        <input nz-input placeholder="Basic usage" [(ngModel)]="date" />
+    </div>
+    <div nz-row>
+        <span>Solo llega la Fecha</span>
+    </div>
+    <div nz-row>
+        <nz-date-picker [ngModel]="date" />
+    </div>
+    <div nz-row>
+        <span>Fecha de doble entrada</span>
+    </div>
+    <div nz-row>
+        <nz-date-picker (ngModelChange)="fechaCalendario($event)" />
+    </div>
+    <div nz-row>
+        <nz-date-picker [(ngModel)]="date" [(ngModel)]="date" />
+    </div>
+    <div nz-row [nzGutter]="16">
+        <div nz-row nzSpan="12">
+            <button nz-button nzType=" primary" (click)="fecha()">Fecha del Calendario</button>
+        </div>
+        <div nz-row nzSpan="12">
+            <button nz-button nzType=" primary" (click)="sumarAnio()">Sumar un año</button>
+        </div>
+    </div>
+    <div nz-row>
+        <span>Llega el rango de fecha</span>
+    </div>
+    <div nz-row>
+        <nz-range-picker [ngModel]="rangeDate" />
+    </div>
+    <div>
+        <nz-range-picker [(ngModel)]="rangeDate" (ngModelChange)="rangoFecha($event)" />
+    </div>
+    <div nz-row>
+        <button nz-button nzType=" primary" (click)="imprimirRango()">Fecha del Calendario</button>
+    </div>
+
+</div>

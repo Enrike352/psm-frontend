@@ -1,0 +1,33 @@
+<p>radio-color works!</p>
+<div nzJustify="center" nz-flex nzAlign="center" [nzGap]="20" [nzVertical]="true">
+    <span>Color Negro</span>
+    <div nz-row>
+        <span>1. Lectura del color1</span><br>
+        <nz-color-picker [ngModel]="color1" />
+    </div>
+    <div nz-row>
+        <span>2. Cambia color2 usando nzOnChange</span><br>
+    </div>
+    <div nz-row>
+        <nz-color-picker [ngModel]="color2" (nzOnChange)="diferenteColor($event)" />
+    </div>
+    <div nz-row>
+        <span>3. color3 </span><br>
+        <nz-color-picker [ngModel]="color3" (ngModelChange)="cambiarColor($event)" />
+    </div>
+
+    <div nz-row>
+        <nz-color-picker [ngModel]="color3" (ngModelChange)="cambiarColor($event)" />
+    </div>
+
+    <div nz-row>
+        <span>4. Doble enlace con color4</span><br>
+        <nz-color-picker [(ngModel)]="color4" (ngModelChange)="diferenteColor4($event)" />
+        {{color4}}
+    </div>
+
+    <div nz-row>
+        <nz-color-picker [ngModel]="color4" />
+        <nz-color-picker [ngModel]="color4" />
+    </div>
+</div>
