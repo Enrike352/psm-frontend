@@ -21,6 +21,10 @@ export class PlanchasPSMService {
         return this.http.get<any[]>(`${this.backendUrl}/docente`);
     }
 
+    filtrarDocentes(filtros: any): Observable<any> {
+        return this.http.post<any[]>(`${this.backendUrl}/docente/filtrar`, filtros);
+    }
+
     eliminarDocente(idDocente: number): Observable<any> {
         return this.http.delete<any>(`${this.backendUrl}/docente/${idDocente}`);
     }

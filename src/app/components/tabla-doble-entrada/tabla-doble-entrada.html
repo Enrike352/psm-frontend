@@ -37,3 +37,11 @@
         }
     </tbody>
 </nz-table>
+<nz-modal [(nzVisible)]="isVisibleModalCrearDocente" nzTitle="Docente" (nzOnCancel)="handleCancel()" [nzWidth]="1000">
+    <p *nzModalContent>
+        <app-directorio-docente [verBotonEliminar]="false"></app-directorio-docente>
+    </p>
+</nz-modal>
+
+
+<button nz-button (click)="showModal()">Boton crear Docente</button>

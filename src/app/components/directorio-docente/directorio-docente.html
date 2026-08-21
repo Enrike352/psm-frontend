@@ -52,12 +52,55 @@ filtrador maestro<br>
 
 Este es el buscador para usarlo y guiarte para realizar Buscador por idDocente y nombre Docente y hay botones del filtrador y limpiar
 -->
+<nz-card nzType="inner" nzTitle="Búsqueda de Panel de Docente" class="basic-content">
+    <form nz-form nzLayout="vertical">
+        <div nz-row [nzGutter]="24" nzAlign="bottom">
+            <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12" [nzLg]="6" [nzSpan]="8">
+                <div>
+                    <nz-form-label>ID Docente</nz-form-label>
+                </div>
+                <div>
+                    <nz-form-control>
+                        <input nz-input type="text" [(ngModel)]="filtroIdDocente" name="filtroIdDocente"
+                            placeholder="Buscar por ID">
+                    </nz-form-control>
+                </div>
+            </div>
+            <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12" [nzLg]="6" [nzSpan]="8">
+                <div>
+                    <nz-form-label>Nombre Docente</nz-form-label>
+                </div>
+                <div>
+                    <nz-form-control>
+                        <input nz-input type="text" [(ngModel)]="filtroNombreDocente" name="filtroNombreDocente"
+                            placeholder="Buscar por Nombre">
+                    </nz-form-control>
+                </div>
+            </div>
 
+            <div nz-col nzFlex="auto" class="search-area">
+                <nz-form-item>
+                    <div nz-row nzGutter="8" nzAlign="middle" [nzJustify]="'end'">
+                        <div nz-col>
+                            <button nz-button nzType="primary" (click)="filtrar()">Filtrar</button>
+                        </div>
+                        <div nz-col>
+                            <button nz-button (click)="limpiar()">Limpiar</button>
+                        </div>
+                    </div>
+                </nz-form-item>
+            </div>
+
+        </div>
+    </form>
+</nz-card>
+    
 
 <nz-card class="basic-content" style="margin-top: 10px; margin-left: 80px; margin-right: 80px;" nzBordered>
     <div nz-row>
-        <div class="btn-wrappers" nz-flex nzJustify="space-between">
-            <span>Directorio de Docentes</span>
+        <div nz-col [nzSpan]="24" class="btn-wrappers"
+            style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 16px; font-weight: bold;">Directorio de Docentes</span>
             <button nz-button nzType="primary" (click)="tipoModal = 'registrarDocente'; abrirModal(tipoModal)">+Nuevo
                 Docente</button>
         </div>
@@ -98,30 +141,11 @@ Este es el buscador para usarlo y guiarte para realizar Buscador por idDocente y
                 </div>
             </ng-container>
         </nz-modal>
-
-        <!-- <nz-modal [(nzVisible)]="isVisibleModalActualizarDocente" [nzTitle]="tituloModal" (nzOnCancel)="handleCancel()"
-            (nzOnOk)="actualizarDocente(idDocente, nombreDocente)" [nzOkDisabled]="isFormInvalid">
-            <ng-container *nzModalContent>
-                <div>
-                    <span>ID Docente</span>
-                </div>
-                <div>
-                    <nz-input-number [(ngModel)]="idDocente" nzMin="1" placeholder="Ej: 01" style="width: 100%;"
-                        [nzDisabled]="true"></nz-input-number>
-                </div>
-                <br>
-                <div>
-                    <span>Nombre completo</span>
-                </div>
-                <div>
-                    <input nz-input placeholder="Ej: Robert Elias Espinoza" [(ngModel)]="nombreDocente"
-                        (ngModelChange)="validarNombre()" />
-                    @if (nombreError) {
-                    <span nz-typography nzType="danger">✗ Nombre demasiado corto (Mínimo 8 caracteres)</span>
-                    }
-                </div>
-            </ng-container>
-        </nz-modal> -->
+    </div>
+    <div nz-row nzJustify="space-between" [nzGutter]="[10,10]">
+        <div nz-col>
+            <app-debouncer-search-input (onDebounce)="filtrarTablaEnMemoria($event)" uppercase></app-debouncer-search-input>
+        </div>
     </div>
 
     <nz-table #basicTable nzSize="middle" style="margin-top: 10px" [nzData]="lsDatosDocente" style="margin-top: 10px"
@@ -140,15 +164,17 @@ Este es el buscador para usarlo y guiarte para realizar Buscador por idDocente y
                 <td nz-typography nzAlign="center">{{item.nombreDocente}}</td>
                 <td nz-typography nzAlign="center">
                     <div nz-flex nzJustify="center" nzGap="small">
-                        <button nz-button nzType="primary"
+                        <button nz-button nzType="primary" nzShape="circle"
                             (click)="tipoModal = 'actualizarDocente'; abrirModal(tipoModal, item.idDocente, item.nombreDocente)">
-                            Actualizar
+                            <nz-icon nzType="edit" nzTheme="outline" />
                         </button>
-                        <button nz-button nzType="primary" nzDanger nz-popconfirm
+                        @if(verBotonEliminar==true){
+                        <button nz-button nzType="primary" nzDanger nzShape="circle" nz-popconfirm
                             nzPopconfirmTitle="¿Estás seguro de que deseas eliminar?" nzPopconfirmPlacement="top"
                             (nzOnConfirm)="eliminarDocente(item)" [nzLoading]="item.isLoadingEliminar">
-                            Eliminar
-                        </button>
+                                <nz-icon nzType="delete" nzTheme="outline" />
+                                </button>
+                        }
                     </div>
                 </td>
             </tr>
@@ -158,4 +184,6 @@ Este es el buscador para usarlo y guiarte para realizar Buscador por idDocente y
     <ng-template #rangeTemplate let-range="range" let-total>
         Mostrando del {{ range[0] }} al {{ range[1] }} de un total de {{ total }} registros
     </ng-template>
+{{verBotonEliminar}}
 </nz-card>
+{{verBotonEliminar}}

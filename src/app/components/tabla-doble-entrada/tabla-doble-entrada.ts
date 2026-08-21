@@ -1,13 +1,32 @@
 import { Component } from '@angular/core';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { DirectorioDocenteComponent } from '../directorio-docente/directorio-docente';
+
 
 @Component({
   selector: 'app-tabla-doble-entrada',
-  imports: [NzTableModule],
+  imports: [NzTableModule, NzModalModule, DirectorioDocenteComponent],
   templateUrl: './tabla-doble-entrada.html',
   styleUrl: './tabla-doble-entrada.scss',
 })
 export class TablaDobleEntradaComponent {
+
+
+  isVisibleModalCrearDocente: boolean = false;
+  nombreDocente: string = '';
+  idDocente: number = 0;
+
+  showModal(): void {
+    this.isVisibleModalCrearDocente = true;
+  }
+
+  handleCancel(): void {
+    this.isVisibleModalCrearDocente = false;
+  }
+
+
+
   listOfData = [
     {
       key: '1',

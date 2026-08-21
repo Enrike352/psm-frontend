@@ -1,0 +1,17 @@
+<div nz-row [nzGutter]="[10,10]" nzAlign="middle">
+    <div nz-col>
+        <label>Buscar:</label>
+    </div>
+    <div nz-col nzFlex="auto">
+        <nz-space-compact nzBlock>
+            <nz-input-wrapper>
+                <i nz-icon nzInputPrefix nzType="search"></i>
+                <input type="text" nz-input [placeholder]="placeholder" [style]="style" (input)="buscarTabla()"
+                    [(ngModel)]="terminoBuscar" />
+            </nz-input-wrapper>
+            <button nz-button (click)="limpiar()" nz-tooltip nzTooltipTitle="Limpiar">
+                <i nz-icon nzType="clear"></i>
+            </button>
+        </nz-space-compact>
+    </div>
+</div>

@@ -8,7 +8,7 @@
     <h3>Vista de Rutas (Router Outlet):</h3>
 </div>
 
-<app-ficha nombre="Enrique" [edad]="20" colorFondo="#f7b2b2ff"></app-ficha>
+<app-ficha nombre="Enrique" colorFondo="#f7b2b2ff"></app-ficha>
 -----------------------------------------
 Prueba del ejercicio Usuario
 @for(y of usuarios; track $index){
@@ -19,13 +19,11 @@ Prueba del ejercicio Usuario
     [estadoUsuario]="y.estadoUsuario"></app-perfil>
 
 <nz-rate [ngModel]="0" nzAllowHalf [nzCharacter]="characterIcon" />
-<ng-template #characterIcon><nz-icon nzType="heart" /></ng-template>
-
-}
+<ng-template #characterIcon><nz-icon nzType="heart" /></ng-template>}
 }
 <button nz-button nzType="primary">Primary Button</button>
 -----------------------------------------
-<app-ficha nombre="Donadoni" (onEliminar)="eliminar($event)" nombreBotonSaludar="Registrar">
+<app-ficha nombre="Donadoni" nombreBotonSaludar="Registrar">
     <ng-template #contenidoFicha>
         <span>Mascota:</span>
         <li>
@@ -49,13 +47,13 @@ Prueba del ejercicio Usuario
     </ng-template>
 </app-ficha>
 
-<app-ficha nombre="Jose" [(ejemplo)]="variableDoble"></app-ficha>
+<!-- <app-ficha nombre="Jose" [(ejemplo)]="variableDoble"></app-ficha>
 -----------------------------------------
 @for(x of integrantes; track $index){
 <app-ficha [nombre]="x.nombre" [descripcion]="x.descripcion" [edad]="x.edad" [mostrarEdad]="x.mostrarEdad"
     (onEliminar)="eliminar($event)">
 </app-ficha>
-}
+} -->
 -------------------------------------------
 @if(comida){
 <h1>Hay comida</h1>

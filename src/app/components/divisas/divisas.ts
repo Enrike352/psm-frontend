@@ -9,14 +9,25 @@ import { NzFlexModule } from 'ng-zorro-antd/flex';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { DirectorioDocenteComponent } from "../directorio-docente/directorio-docente";
 @Component({
   selector: 'app-divisas',
-  imports: [FormsModule, NzInputModule, NzButtonModule, NzSelectModule, NzFlexModule, NzGridModule, NzInputNumberModule, NzPopconfirmModule],
+  imports: [FormsModule,
+    NzInputModule,
+    NzButtonModule,
+    NzSelectModule,
+    NzFlexModule,
+    NzGridModule,
+    NzInputNumberModule,
+    NzPopconfirmModule,
+
+  ],
   templateUrl: './divisas.html',
   styleUrl: './divisas.scss',
 })
 export class DivisasComponent {
   private readonly message = inject(NzMessageService);
+
 
   monedaEUS: number = 0;
   moneda: string = "PEN";

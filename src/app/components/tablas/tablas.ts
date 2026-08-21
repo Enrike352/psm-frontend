@@ -11,6 +11,7 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { DebouncerSearchInputComponent } from '../widgets/debouncer-search-input/debouncer-search-input';
 
 // 1. Definimos la estructura de nuestros datos
 export interface CpeInconcluso {
@@ -25,7 +26,7 @@ export interface CpeInconcluso {
 
 @Component({
   selector: 'app-tablas',
-  imports: [NzTableModule, NzDividerModule, NzDropdownModule, NzButtonModule, NzTypographyModule, NzTagModule, NzGridModule, NzFormModule, NzSelectModule, NzIconModule, ReactiveFormsModule, NzInputModule],
+  imports: [NzTableModule, NzDividerModule, NzDropdownModule, NzButtonModule, NzTypographyModule, NzTagModule, NzGridModule, NzFormModule, NzSelectModule, NzIconModule, ReactiveFormsModule, NzInputModule, DebouncerSearchInputComponent],
   templateUrl: './tablas.html',
   styleUrl: './tablas.scss',
 })
@@ -61,6 +62,13 @@ export class TablasComponent {
   }
 
   productoKeyEnter() {
+    this.obtenerEmpresaPorFiltros();
+  }
+
+  alBuscarConDebounce(terminoBuscado: string) {
+    console.log('El debouncer capturó esto (después de 300ms):', terminoBuscado);
+    // Aquí actualizamos el campo del formulario y llamamos a filtrar
+    this.filtroForm.controls['razonSocialNombre'].setValue(terminoBuscado);
     this.obtenerEmpresaPorFiltros();
   }
 
